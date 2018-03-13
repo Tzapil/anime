@@ -1,42 +1,43 @@
 package query
 
 import (
-    "golang.org/x/net/html"
-    "bytes"
+	"bytes"
+
+	"golang.org/x/net/html"
 )
 
 // Helpers
 func Filter(n []*html.Node, s Selector) []*html.Node {
-    result := make([]*html.Node, 0)
-    for i := range n {
-        if s.Check(n[i]) {
-            result = append(result, n[i])
-        }
-    }
+	result := make([]*html.Node, 0)
+	for i := range n {
+		if s.Check(n[i]) {
+			result = append(result, n[i])
+		}
+	}
 
-    return result
+	return result
 }
 
 func Contains(n string, arr []string) bool {
-    result := false
-    for _, a := range arr {
-        if a == n {
-            result = true
-            break
-        }
-    }
+	result := false
+	for _, a := range arr {
+		if a == n {
+			result = true
+			break
+		}
+	}
 
-    return result
+	return result
 }
 
 func Text(n *html.Node) string {
-    result := ""
+	result := ""
 
-    if n != nil {
-        wr := new(bytes.Buffer)
-        html.Render(wr, n)
-        result = wr.String()
-    }
+	if n != nil {
+		wr := new(bytes.Buffer)
+		html.Render(wr, n)
+		result = wr.String()
+	}
 
-    return result
+	return result
 }
