@@ -1,7 +1,6 @@
 #!/bin/bash
 
-#go build -o ./bin/main .
 rm -r ./bin
-CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o bin/main .
+docker run --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp golang:1.8 ./build_docker.sh
 
-docker build -t tzapil/anime:v0.2 -f Dockerfile.scratch .
+docker build -t tzapil/anime:v0.3 -f Dockerfile .
